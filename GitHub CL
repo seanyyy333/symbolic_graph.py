@@ -134,8 +134,6 @@ Example usage stats
 	"host": "github.com"
 }
 
-
-Can you organise this and put it in Code for me? I believe it’s like.
 # prompt: badges = {}
 # def unlock_badge(name): """Unlocks a badge.""" global badges if name not in badges or not badges[name]: badges[name] = True print(f"Badge '{name}' unlocked!") else: print(f"Badge '{name}' already unlocked.")
 # def get_badges(): """Returns the currently unlocked badges.""" return badges
@@ -174,14 +172,29 @@ Can you organise this and put it in Code for me? I believe it’s like.
 # Multi-account notes
 # Multi-account users can use --hostname flag or GH_HOST environment variable to specify the GitHub hostname for commands that would otherwise assume the github.com host.
 # Set up optional helpers
-# Is gh copilot suggest ... too many keystrokes? Do you 
+# Is gh copilot suggest ... too many keystrokes? Do you
 
 import time
 import random
+import time
+import random
 import threading
+
 badges = {}
-def unlock_badge(name): """Unlocks a badge.""" global badges if name not in badges or not badges[name]: badges[name] = True print(f"Badge '{name}' unlocked!") else: print(f"Badge '{name}' already unlocked.")
-def get_badges(): """Returns the currently unlocked badges.""" return badges
+
+def unlock_badge(name):
+  """Unlocks a badge."""
+  global badges
+  if name not in badges or not badges[name]:
+    badges[name] = True
+    print(f"Badge '{name}' unlocked!")
+  else:
+    print(f"Badge '{name}' already unlocked.")
+
+def get_badges():
+  """Returns the currently unlocked badges."""
+  return badges
+
 def simulate_gameplay():
   """Simulates game actions over time and potentially unlocks badges."""
   badge_names = ["Explorer", "Master Architect", "Speed Demon", "Treasure Hunter"]
@@ -193,24 +206,33 @@ def simulate_gameplay():
       badge_to_unlock = random.choice(badge_names)
       unlock_badge(badge_to_unlock)
   print("\nSimulation finished.")
+
 # Start the simulation in a separate thread to not block the notebook
 simulation_thread = threading.Thread(target=simulate_gameplay)
 simulation_thread.start()
+
 # You can continue running other code in the notebook while the simulation runs.
+
 # To wait for the simulation to finish before printing final badges:
 simulation_thread.join()
+
 print("\nCurrently unlocked badges after simulation:")
 print(get_badges())
+
 # GitHub CLI part (assuming gh is installed and authenticated)
 # This part is commented out as it requires user interaction for authentication
 # and depends on the system environment having GitHub CLI installed.
 # To use this part, uncomment the following lines and run them in a terminal
 # or an environment where gh CLI is available and authenticated.
+
 # print("\nAuthenticating with GitHub CLI...")
 # !gh auth login --web
+
 # print("\nInstalling/Upgrading gh-copilot extension...")
 # !gh extension install github/gh-copilot --force
+
 # print("\nSuggesting a command for installing and configuring git lfs:")
 # !gh copilot suggest "Install and configure git lfs"
+
 # print("\nExplaining a git lfs command:")
 # !gh copilot explain 'git lfs migrate import --everything --include=".gz,.png,*.jar"'
